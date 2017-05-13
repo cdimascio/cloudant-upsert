@@ -5,7 +5,7 @@ require('../index')(cloudant);
 cloudant.db.use('rooms').upsert('carmine', doc => ({
     "_id": "carmine",
     "_rev": doc._rev,
-    "text": "Woop Woop!",
+    "text": "Woop Woop! We're using promises",
   }))
   .then(r => console.log('result', r))
   .catch(e => console.log('error', e));
