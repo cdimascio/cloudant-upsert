@@ -1,4 +1,4 @@
-#cloudant-upsert
+# cloudant-upsert
 
 Adds an upsert function to the [nodejs-cloudant](https://github.com/cloudant/nodejs-cloudant/blob/master/cloudant.js) library. This library does not include any package dependencies.
 
