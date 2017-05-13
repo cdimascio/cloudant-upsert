@@ -1,0 +1,28 @@
+{
+  "name": "cloudant-upsert",
+  "version": "0.9.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdimascio/cloudant-upsert.git"
+  },
+  "keywords": [
+    "cloudant",
+    "couchdb",
+    "upsert",
+    "database"
+  ],
+  "author": "Carmine DiMascio <cdimascio@gmail.com> (https://github.com/cdimascio)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cdimascio/cloudant-upsert/issues"
+  },
+  "homepage": "https://github.com/cdimascio/cloudant-upsert#readme",
+  "devDependencies": {
+    "cloudant": "^1.7.1"
+  }
+}
