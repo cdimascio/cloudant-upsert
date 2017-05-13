@@ -1,4 +1,4 @@
-# cloudant-upsert
+#cloudant-upsert
 
 Adds an upsert function to the [nodejs-cloudant](https://github.com/cloudant/nodejs-cloudant/blob/master/cloudant.js) library. This library does not include any package dependencies.
 
@@ -10,10 +10,11 @@ npm install cloudant-upsert
 
 ## Usage
 
+```javascript
 var Cloudant = require('cloudant');
 var cloudant = Cloudant('<YOUR_CLOUDANT_URI>');
 require('cloudant-upsert')(cloudant);
-
+```
 
 ## Examples
 
@@ -27,7 +28,7 @@ require('cloudant-upsert')(cloudant);
 cloudant.db.use('rooms').upsert('carmine', doc => ({
     "_id": "carmine",
     "_rev": doc._rev,
-    "text": "Woop Woop!",
+    "text": "Woop Woop! We're using promises",
   }))
   .then(r => console.log('result', r))
   .catch(e => console.log('error', e));
