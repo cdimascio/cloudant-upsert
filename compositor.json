@@ -1,0 +1,143 @@
+{
+  "name": "cdimascio/cloudant-upsert",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "",
+  "branch": "",
+  "style": {
+    "name": "Default",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/BannerHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "-apple-system, BlinkMacSystemFont, sans-serif",
+    "fontWeight": 400,
+    "bold": 600,
+    "lineHeight": 1.5,
+    "typeScale": [
+      72,
+      48,
+      24,
+      20,
+      16,
+      14,
+      12
+    ],
+    "monospace": "Menlo, monospace",
+    "heading": {
+      "fontFamily": null,
+      "fontStyle": null,
+      "fontWeight": 600,
+      "lineHeight": 1.25,
+      "textTransform": null,
+      "letterSpacing": null
+    },
+    "h0": {},
+    "h1": {},
+    "h2": {},
+    "h3": {},
+    "h4": {},
+    "h5": {},
+    "h6": {},
+    "alternativeText": {},
+    "space": [
+      0,
+      8,
+      16,
+      32,
+      48,
+      64,
+      96
+    ],
+    "layout": {
+      "maxWidth": 1024,
+      "centered": false
+    },
+    "colors": {
+      "text": "#111",
+      "background": "#fff",
+      "primary": "#08e",
+      "secondary": "#059",
+      "highlight": "#e08",
+      "border": "#ddd",
+      "muted": "#eee"
+    },
+    "border": {
+      "width": 1,
+      "radius": 2
+    },
+    "link": {},
+    "button": {
+      "hover": {
+        "boxShadow": "inset 0 0 0 999px rgba(0, 0, 0, .125)"
+      }
+    },
+    "input": {},
+    "body": {
+      "margin": 0
+    },
+    "breakpoints": {
+      "xs": "@media screen and (max-width:40em)",
+      "sm": "@media screen and (min-width:40em)",
+      "md": "@media screen and (min-width:52em)",
+      "lg": "@media screen and (min-width:64em)"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/cdimascio/cloudant-upsert",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/cloudant-upsert",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "cloudant-upsert",
+      "subhead": "Adds an upsert to nodejs cloudant",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "cloudant-upsert: Adds an upsert to nodejs cloudant",
+          "url": ""
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "cdimascio",
+          "repo": "cloudant-upsert"
+        }
+      ],
+      "text": "v0.9.4"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n<p>Adds an upsert function to the <a href=\"https://github.com/cloudant/nodejs-cloudant/blob/master/cloudant.js\">nodejs-cloudant</a> library. This library does not include any package dependencies.</p>\n<h2>Install</h2>\n<pre>npm install cloudant-upsert</pre><h2>Usage</h2>\n<pre><span class=\"hljs-keyword\">var</span> Cloudant = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;cloudant&apos;</span>);\n<span class=\"hljs-keyword\">var</span> cloudant = Cloudant(<span class=\"hljs-string\">&apos;&lt;YOUR_CLOUDANT_URI&gt;&apos;</span>);\n<span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;cloudant-upsert&apos;</span>)(cloudant);</pre><h2>Examples</h2>\n<h4>Promises</h4>\n<pre><span class=\"hljs-keyword\">var</span> Cloudant = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;cloudant&apos;</span>);\n<span class=\"hljs-keyword\">var</span> cloudant = Cloudant({ <span class=\"hljs-attr\">url</span>: <span class=\"hljs-string\">&apos;&lt;YOUR_CLOUDANT_URL&gt;&apos;</span>, <span class=\"hljs-attr\">plugin</span>: <span class=\"hljs-string\">&apos;promises&apos;</span> });\n<span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;cloudant-upsert&apos;</span>)(cloudant);\n\ncloudant.db.use(<span class=\"hljs-string\">&apos;rooms&apos;</span>).upsert(<span class=\"hljs-string\">&apos;carmine&apos;</span>, doc =&gt; ({\n    <span class=\"hljs-string\">&quot;_id&quot;</span>: <span class=\"hljs-string\">&quot;carmine&quot;</span>,\n    <span class=\"hljs-string\">&quot;_rev&quot;</span>: doc._rev,\n    <span class=\"hljs-string\">&quot;text&quot;</span>: <span class=\"hljs-string\">&quot;Woop Woop! We&apos;re using promises&quot;</span>,\n  }))\n  .then(<span class=\"hljs-function\"><span class=\"hljs-params\">r</span> =&gt;</span> <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">&apos;result&apos;</span>, r))\n  .catch(<span class=\"hljs-function\"><span class=\"hljs-params\">e</span> =&gt;</span> <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">&apos;error&apos;</span>, e));</pre><h4>Callbacks</h4>\n<pre><span class=\"hljs-keyword\">var</span> Cloudant = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;cloudant&apos;</span>);\n<span class=\"hljs-keyword\">var</span> cloudant = Cloudant(<span class=\"hljs-string\">&apos;&lt;YOUR_CLOUDANT_URL&gt;&apos;</span>);\n<span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;cloudant-upsert&apos;</span>)(cloudant);\n\ncloudant.db.use(<span class=\"hljs-string\">&apos;mydb&apos;</span>).upsert(<span class=\"hljs-string\">&apos;carmine&apos;</span>, doc =&gt; ({\n    <span class=\"hljs-string\">&quot;_id&quot;</span>: <span class=\"hljs-string\">&quot;carmine&quot;</span>,\n    <span class=\"hljs-string\">&quot;_rev&quot;</span>: doc._rev,\n    <span class=\"hljs-string\">&quot;text&quot;</span>: <span class=\"hljs-string\">&quot;Woop! Woop! We&apos;re using callbacks&quot;</span>\n  }), (err, data) =&gt; {\n    <span class=\"hljs-keyword\">if</span> (err) <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">&apos;error&apos;</span>, err.reason)\n    <span class=\"hljs-keyword\">else</span> <span class=\"hljs-built_in\">console</span>.log(<span class=\"hljs-string\">&apos;data&apos;</span>, data)\n  })</pre><h2>License</h2>\n<p>MIT</p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/cdimascio/cloudant-upsert",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/cdimascio",
+          "text": "cdimascio"
+        }
+      ]
+    }
+  ]
+}
