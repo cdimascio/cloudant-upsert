@@ -2,6 +2,10 @@
 
 Adds an upsert function to the [nodejs-cloudant](https://github.com/cloudant/nodejs-cloudant/blob/master/cloudant.js) library. This library does not include any package dependencies.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/cdimascio/cloudant-upsert/master/assets/cloudant-upsert.png"/>
+</p>
+
 ## Install
 
 ```shell
