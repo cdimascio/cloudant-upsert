@@ -6,32 +6,68 @@
 
 <h2>Install</h2>
 <pre>npm install cloudant-upsert</pre><h2>Usage</h2>
-<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@cloudant/cloudant'</span>);
+<p>The following adds the <code>upsert</code> function to a <code>cloudant</code> instance</p>
+<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant'</span>);
 <span class="hljs-keyword">var</span> cloudant = Cloudant(<span class="hljs-string">'&lt;YOUR_CLOUDANT_URI&gt;'</span>);
 <span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant-upsert'</span>)(cloudant);</pre><h2>Examples</h2>
 <h4>Promises</h4>
-<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@cloudant/cloudant'</span>);
-<span class="hljs-keyword">var</span> cloudant = Cloudant({ <span class="hljs-attr">url</span>: <span class="hljs-string">'&lt;YOUR_CLOUDANT_URL&gt;'</span>, <span class="hljs-attr">plugin</span>: <span class="hljs-string">'promises'</span> });
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant-upsert'</span>)(cloudant);
-
-cloudant.db.use(<span class="hljs-string">'rooms'</span>).upsert(<span class="hljs-string">'carmine'</span>, doc =&gt; ({
-    <span class="hljs-string">&quot;_id&quot;</span>: <span class="hljs-string">&quot;carmine&quot;</span>,
-    <span class="hljs-string">&quot;_rev&quot;</span>: doc._rev,
+<p>In the example below <code>prevdoc</code> contains <code>null</code> or the previous doc</p>
+<pre>cloudant.db.use(<span class="hljs-string">'mydb'</span>).upsert(<span class="hljs-string">'carmine'</span>, prevdoc =&gt; ({
     <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;Woop Woop! We're using promises&quot;</span>,
   }))
   .then(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'result'</span>, r))
-  .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'error'</span>, e));</pre><h4>Callbacks</h4>
-<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@cloudant/cloudant'</span>);
-<span class="hljs-keyword">var</span> cloudant = Cloudant(<span class="hljs-string">'&lt;YOUR_CLOUDANT_URL&gt;'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant-upsert'</span>)(cloudant);
-
-cloudant.db.use(<span class="hljs-string">'mydb'</span>).upsert(<span class="hljs-string">'carmine'</span>, doc =&gt; ({
-    <span class="hljs-string">&quot;_id&quot;</span>: <span class="hljs-string">&quot;carmine&quot;</span>,
-    <span class="hljs-string">&quot;_rev&quot;</span>: doc._rev,
+  .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'error'</span>, e.message));</pre><h4>Callbacks</h4>
+<p>In the example below <code>prevdoc</code> contains <code>null</code> or the previous doc</p>
+<pre>cloudant.db.use(<span class="hljs-string">'mydb'</span>).upsert(<span class="hljs-string">'carmine'</span>, prevdoc =&gt; ({
     <span class="hljs-string">&quot;text&quot;</span>: <span class="hljs-string">&quot;Woop! Woop! We're using callbacks&quot;</span>
   }), (err, data) =&gt; {
     <span class="hljs-keyword">if</span> (err) <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'error'</span>, err.reason)
     <span class="hljs-keyword">else</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'data'</span>, data)
-  })</pre><h2>License</h2>
+  })</pre><h2>API</h2>
+<h3>Promise API</h3>
+<h3><code>upsert(id, function(prevdoc)</code>)</h3>
+<table>
+<thead>
+<tr>
+<th>argument</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>The document id to upsert</td>
+</tr>
+<tr>
+<td><code>function(prevdoc) {...}</code></td>
+<td>A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert</td>
+</tr>
+</tbody>
+</table>
+<h3>Callback API</h3>
+<h3><code>upsert(id, function(prevdoc), function(err, res)}</code></h3>
+<table>
+<thead>
+<tr>
+<th>argument</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>The document id to upsert</td>
+</tr>
+<tr>
+<td><code>function(prevdoc) {...}</code></td>
+<td>A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert</td>
+</tr>
+<tr>
+<td><code>function(err, res)</code></td>
+<td>A Node.js error first callback</td>
+</tr>
+</tbody>
+</table>
+<h2>License</h2>
 <p>MIT</p>
 </div></article></div><footer><div style="box-sizing:border-box;max-width:1024px;margin-left:auto;margin-right:auto;margin-bottom:32px;padding-top:8px;padding-bottom:8px;padding-left:32px;padding-right:32px;"><div style="margin-left:-16px;margin-right:-16px;"><a href="https://github.com/cdimascio/cloudant-upsert" class="Link" style="box-sizing:border-box;color:inherit;display:inline-block;font-size:14px;line-height:16px;padding-left:16px;padding-right:16px;padding-top:16px;padding-bottom:16px;font-weight:600;text-decoration:none;">GitHub</a><a href="https://github.com/cdimascio" class="Link" style="box-sizing:border-box;color:inherit;display:inline-block;font-size:14px;line-height:16px;padding-left:16px;padding-right:16px;padding-top:16px;padding-bottom:16px;font-weight:600;text-decoration:none;">cdimascio</a></div><div></div></div></footer></div><div style="font-family:-apple-system, sans-serif;font-size:12px;font-weight:600;text-align:right;padding:24px;color:#333;background-color:#eee;"><a href="http://compositor.io" style="color:inherit;text-decoration:none;">Built with Compositor.io</a></div></body></html>
