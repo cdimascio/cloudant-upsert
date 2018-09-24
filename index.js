@@ -2,7 +2,7 @@ function upsertFn(db) {
   function upsert(docId, transform, callback) {
     if (!transform) {
       return callback(
-        'transform missing. signature is: upsert(docId, transform, qs, callback)'
+        'transform missing. signature is: upsert(docId, transform, callback)'
       );
     }
 
