@@ -6,11 +6,11 @@
 
 <h2>Install</h2>
 <pre>npm install cloudant-upsert</pre><h2>Usage</h2>
-<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant'</span>);
+<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@cloudant/cloudant'</span>);
 <span class="hljs-keyword">var</span> cloudant = Cloudant(<span class="hljs-string">'&lt;YOUR_CLOUDANT_URI&gt;'</span>);
 <span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant-upsert'</span>)(cloudant);</pre><h2>Examples</h2>
 <h4>Promises</h4>
-<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant'</span>);
+<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@cloudant/cloudant'</span>);
 <span class="hljs-keyword">var</span> cloudant = Cloudant({ <span class="hljs-attr">url</span>: <span class="hljs-string">'&lt;YOUR_CLOUDANT_URL&gt;'</span>, <span class="hljs-attr">plugin</span>: <span class="hljs-string">'promises'</span> });
 <span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant-upsert'</span>)(cloudant);
 
@@ -21,7 +21,7 @@ cloudant.db.use(<span class="hljs-string">'rooms'</span>).upsert(<span class="hl
   }))
   .then(<span class="hljs-function"><span class="hljs-params">r</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'result'</span>, r))
   .catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'error'</span>, e));</pre><h4>Callbacks</h4>
-<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant'</span>);
+<pre><span class="hljs-keyword">var</span> Cloudant = <span class="hljs-built_in">require</span>(<span class="hljs-string">'@cloudant/cloudant'</span>);
 <span class="hljs-keyword">var</span> cloudant = Cloudant(<span class="hljs-string">'&lt;YOUR_CLOUDANT_URL&gt;'</span>);
 <span class="hljs-built_in">require</span>(<span class="hljs-string">'cloudant-upsert'</span>)(cloudant);
 
