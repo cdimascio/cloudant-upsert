@@ -1,7 +1,9 @@
 function upsertFn(db) {
   function upsert(docId, transform, qs, callback) {
     if (!transform) {
-      return callback('transform missing. signature is: upsert(docId, transform, qs, callback)')
+      return callback(
+        'transform missing. signature is: upsert(docId, transform, qs, callback)'
+      );
     }
 
     if (typeof qs === 'function') {
@@ -32,14 +34,14 @@ function upsertFn(db) {
       if (doc) {
         return db.insert(doc, doc._id).then(data => mergeIdRev(doc, data));
       } else {
-        return Promise.reject(MSG_INVALID_DOC)
+        return Promise.reject(MSG_INVALID_DOC);
       }
     };
 
     const callbackHelper = curDoc => {
       const doc = transformDoc(curDoc);
       if (doc) {
-        db.insert(doc, doc._id, function (err, data) {
+        db.insert(doc, doc._id, function(err, data) {
           if (err) callback(err);
           else callback(null, mergeIdRev(doc, data));
         });
@@ -52,26 +54,32 @@ function upsertFn(db) {
       if (!docId) callbackHelper();
       else {
         db.get(docId, { include_docs: true }, (err, body) => {
-          if (err) return callback(err);
+          if (err && err.statusCode !== 404) callback(err);
           else callbackHelper(body);
         });
       }
     } else {
       return !docId
         ? promiseHelper()
-        : db.get(docId, { include_docs: true }).then(promiseHelper);
+        : db
+            .get(docId, { include_docs: true })
+            .catch(e => {
+              if (e.statusCode === 404) return null;
+              throw e;
+            })
+            .then(promiseHelper);
     }
   }
 
   return upsert;
 }
 
-module.exports = function (cloudant) {
+module.exports = function(cloudant) {
   var use = cloudant.db.use;
-  cloudant.db.use = function (dbName) {
-    var db = use(dbName)
+  cloudant.db.use = function(dbName) {
+    var db = use(dbName);
     db.upsert = upsertFn(db);
     return db;
-  }
+  };
   return cloudant;
-}
+};
