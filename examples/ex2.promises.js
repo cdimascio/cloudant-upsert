@@ -1,11 +1,14 @@
-var Cloudant = require('cloudant');
-var cloudant = Cloudant({ url: '<YOUR_CLOUDANT_URL>', plugin: 'promises' });
+var Cloudant = require('@cloudant/cloudant');
+var cloudant = Cloudant({
+  url: '<YOUR-CLOUDANT-URL>',
+  plugins: 'promises',
+});
 require('../index')(cloudant);
 
-cloudant.db.use('rooms').upsert('carmine', doc => ({
-    "_id": "carmine",
-    "_rev": doc._rev,
-    "text": "Woop Woop! We're using promises",
+cloudant.db
+  .use('mydb')
+  .upsert('carmine', prevdoc => ({
+    text: "Woop Woop! We're using promises",
   }))
   .then(r => console.log('result', r))
-  .catch(e => console.log('error', e));
+  .catch(e => console.log('error', e.message));

@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/cdimascio/cloudant-upsert#readme",
   "devDependencies": {
-    "cloudant": "^1.7.1"
+    "@cloudant/cloudant": "^2.4.0"
   }
 }

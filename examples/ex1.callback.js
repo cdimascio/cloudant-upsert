@@ -1,12 +1,11 @@
-var Cloudant = require('cloudant');
-var cloudant = Cloudant('<YOUR_CLOUDANT_URL>');
+var Cloudant = require('@cloudant/cloudant');
+var cloudant = Cloudant('<YOUR-CLOUDANT-URL>');
 require('../index')(cloudant);
 
-cloudant.db.use('mydb').upsert('carmine', doc => ({
-    "_id": "carmine",
-    "_rev": doc._rev,
-    "text": "Woop! Woop! We're using callbacks"
+cloudant.db.use('mydb').upsert('carmine', prevdoc => ({
+    text: "Woop! Woop! We're using callbacks",
   }), (err, data) => {
-    if (err) console.log('error', err.reason)
-    else console.log('data', data)
-  })
+    if (err) console.log('error', err.message);
+    else console.log('data', data);
+  }
+);
