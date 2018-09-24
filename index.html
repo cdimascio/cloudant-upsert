@@ -30,7 +30,7 @@
 <table>
 <thead>
 <tr>
-<th>argument</th>
+<th>param</th>
 <th>description</th>
 </tr>
 </thead>
@@ -40,8 +40,8 @@
 <td>The document id to upsert</td>
 </tr>
 <tr>
-<td><code>function(prevdoc) {...}</code></td>
-<td>A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert</td>
+<td><code>function(prevdoc): doc</code></td>
+<td>A function that provides the previous document (or null when inserting a new doc) as input. You must return the document to upsert.</td>
 </tr>
 </tbody>
 </table>
@@ -50,7 +50,7 @@
 <table>
 <thead>
 <tr>
-<th>argument</th>
+<th>param</th>
 <th>description</th>
 </tr>
 </thead>
@@ -60,11 +60,11 @@
 <td>The document id to upsert</td>
 </tr>
 <tr>
-<td><code>function(prevdoc) {...}</code></td>
+<td><code>function(prevdoc): doc</code></td>
 <td>A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert</td>
 </tr>
 <tr>
-<td><code>function(err, res)</code></td>
+<td><code>function(err, res): void</code></td>
 <td>A Node.js error first callback</td>
 </tr>
 </tbody>
