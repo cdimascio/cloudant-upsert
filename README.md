@@ -14,8 +14,10 @@ npm install cloudant-upsert
 
 ## Usage
 
+The following adds the `upsert` function to a `cloudant` instance
+
 ```javascript
-var Cloudant = require('@cloudant/cloudant');
+var Cloudant = require('cloudant');
 var cloudant = Cloudant('<YOUR_CLOUDANT_URI>');
 require('cloudant-upsert')(cloudant);
 ```
@@ -24,36 +26,49 @@ require('cloudant-upsert')(cloudant);
 
 #### Promises
 
-```javascript
-var Cloudant = require('@cloudant/cloudant');
-var cloudant = Cloudant({ url: '<YOUR_CLOUDANT_URL>', plugin: 'promises' });
-require('cloudant-upsert')(cloudant);
+In the example below `prevdoc` contains `null` or the previous doc
 
-cloudant.db.use('rooms').upsert('carmine', doc => ({
-    "_id": "carmine",
-    "_rev": doc._rev,
+```javascript
+cloudant.db.use('mydb').upsert('carmine', prevdoc => ({
     "text": "Woop Woop! We're using promises",
   }))
   .then(r => console.log('result', r))
-  .catch(e => console.log('error', e));
+  .catch(e => console.log('error', e.message));
 ```
 
 #### Callbacks
 
-```javascript
-var Cloudant = require('@cloudant/cloudant');
-var cloudant = Cloudant('<YOUR_CLOUDANT_URL>');
-require('cloudant-upsert')(cloudant);
+In the example below `prevdoc` contains `null` or the previous doc
 
-cloudant.db.use('mydb').upsert('carmine', doc => ({
-    "_id": "carmine",
-    "_rev": doc._rev,
+```javascript
+cloudant.db.use('mydb').upsert('carmine', prevdoc => ({
     "text": "Woop! Woop! We're using callbacks"
   }), (err, data) => {
     if (err) console.log('error', err.reason)
     else console.log('data', data)
   })
 ```
+
+## API
+
+### Promise API
+### `upsert(id, function(prevdoc)`)
+
+| argument | description |
+| ------------- | ------------- |
+| `id`  | The document id to upsert  |
+| `function(prevdoc) {...}`  | A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert  |
+
+
+### Callback API
+### `upsert(id, function(prevdoc), function(err, res)}`
+
+| argument | description |
+| ------------- | ------------- |
+| `id`  | The document id to upsert  |
+| `function(prevdoc) {...}`  | A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert  |
+| `function(err, res)`  | A Node.js error first callback |
+
 
 ## License
 MIT

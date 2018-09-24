@@ -1,13 +1,9 @@
 function upsertFn(db) {
-  function upsert(docId, transform, qs, callback) {
+  function upsert(docId, transform, callback) {
     if (!transform) {
       return callback(
         'transform missing. signature is: upsert(docId, transform, qs, callback)'
       );
-    }
-
-    if (typeof qs === 'function') {
-      callback = qs;
     }
 
     const MSG_INVALID_DOC = 'Error: caller did not supply a valid doc';
