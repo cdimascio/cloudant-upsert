@@ -73,4 +73,4 @@ cloudant.db.use('mydb').upsert('carmine', prevdoc => ({
 
 
 ## License
-MIT
+[MIT](LICENSE)
