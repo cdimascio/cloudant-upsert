@@ -15,7 +15,7 @@ npm install cloudant-upsert
 ## Usage
 
 ```javascript
-var Cloudant = require('cloudant');
+var Cloudant = require('@cloudant/cloudant');
 var cloudant = Cloudant('<YOUR_CLOUDANT_URI>');
 require('cloudant-upsert')(cloudant);
 ```
@@ -25,7 +25,7 @@ require('cloudant-upsert')(cloudant);
 #### Promises
 
 ```javascript
-var Cloudant = require('cloudant');
+var Cloudant = require('@cloudant/cloudant');
 var cloudant = Cloudant({ url: '<YOUR_CLOUDANT_URL>', plugin: 'promises' });
 require('cloudant-upsert')(cloudant);
 
@@ -41,7 +41,7 @@ cloudant.db.use('rooms').upsert('carmine', doc => ({
 #### Callbacks
 
 ```javascript
-var Cloudant = require('cloudant');
+var Cloudant = require('@cloudant/cloudant');
 var cloudant = Cloudant('<YOUR_CLOUDANT_URL>');
 require('cloudant-upsert')(cloudant);
 
