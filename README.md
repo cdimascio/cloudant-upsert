@@ -54,20 +54,20 @@ cloudant.db.use('mydb').upsert('carmine', prevdoc => ({
 ### Promise API
 ### `upsert(id, function(prevdoc)`)
 
-| argument | description |
+| param | description |
 | ------------- | ------------- |
 | `id`  | The document id to upsert  |
-| `function(prevdoc) {...}`  | A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert  |
+| `function(prevdoc): doc `  | A function that provides the previous document (or null when inserting a new doc) as input. You must return the document to upsert.  |
 
 
 ### Callback API
 ### `upsert(id, function(prevdoc), function(err, res)}`
 
-| argument | description |
+| param | description |
 | ------------- | ------------- |
 | `id`  | The document id to upsert  |
-| `function(prevdoc) {...}`  | A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert  |
-| `function(err, res)`  | A Node.js error first callback |
+| `function(prevdoc): doc`  | A function that provides the previous document (or null when inserting a new doc) and returns a new document to upsert  |
+| `function(err, res): void`  | A Node.js error first callback |
 
 
 ## License
