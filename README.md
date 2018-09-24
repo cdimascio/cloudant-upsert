@@ -19,7 +19,7 @@ npm install cloudant-upsert
 The following adds the `upsert` function to a `cloudant` instance
 
 ```javascript
-var Cloudant = require('cloudant');
+var Cloudant = require('@cloudant/cloudant');
 var cloudant = Cloudant('<YOUR_CLOUDANT_URI>');
 require('cloudant-upsert')(cloudant);
 ```
