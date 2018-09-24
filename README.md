@@ -1,6 +1,8 @@
 # cloudant-upsert
 
-Adds an upsert function to the [nodejs-cloudant](https://github.com/cloudant/nodejs-cloudant/blob/master/cloudant.js) library. This library does not include any package dependencies.
+![](https://img.shields.io/badge/status-stable-green.svg) ![](https://img.shields.io/badge/license-MIT-blue.svg)
+
+A no-dependency module that adds an `upsert` function to the [nodejs-cloudant](https://github.com/cloudant/nodejs-cloudant/blob/master/cloudant.js) module.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/cdimascio/cloudant-upsert/master/assets/cloudant-upsert.png"/>
